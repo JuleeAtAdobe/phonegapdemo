@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>PhoneGap demo - add moustache</title>
+    <!--This viewport tag lets your browser know how to handle the page. It
+    sets the width, default zoom level, max zoom level and if the user has
+    the ability to zoom -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+    <!-- hide Safari ui componentes so that only the status bar is visible (aka full-screen) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- changes the status bar from the default grey to black  -->    
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- keep icon in root dir -->
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png"/>
+
+	<script src="js/cordova-1.9.0.js"></script> 
+    <link rel="stylesheet" href="jquery.mobile-1.1.0.min.css" />
+    <script src="js/jquery-1.7.1.min.js"></script>
+
+    <script>
+        $(document).bind("mobileinit", function () {
+        /* flash fix on page transitions w/ jqm 1.1 */  
+        $.mobile.defaultPageTransition = 'none';
+        /* disable the 200 ms hover delay that is default in jqm 1.1.*/
+        $.mobile.buttonMarkup.hoverDelay = 0;
+        });
+    </script>
+
+    <script src="js/jquery.mobile-1.1.0.min.js"></script>
+
+    <script type="text/javascript">
+        function onBodyLoad()
+        {       
+            document.addEventListener("deviceready", onDeviceReady, false);
+        } 
+        // for fixed header and footer
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    </script>
+
+    <!-- app specific js and styles -->
+    <script src="js/photos.js"></script> 
+    <script src="js/touchGesture.js"></script>
+    <link rel="stylesheet" href="css/main.css"> 
+    </head>
+    
+    <body onload="onBodyLoad()"> 
+
+     <!-- ---------------- HOME PAGE --------------- -->   
+     <div data-role="page" id="homepage">
+        <div data-role="header" data-position="fixed">
+            <a href="#infopage" data-role="button" data-icon="info" data-iconpos="notext" id="infoIcon"></a>
+        </div>       
+
+        <div data-role="content">
+            <!-- although binding to onTouchStart is faster than onClick, we'll bind to onClick here in order to give the user faster feedback of touch event (down / active states) -->
+            <a href="#" data-role="button" class="hometext" onClick="capturePhoto()" >USE CAMERA</a>
+            <a href="#" data-role="button" class="hometext" onClick="getPhoto(pictureSource.PHOTOLIBRARY)">USE LIBRARY</a>
+            <img src="homescreen.png" class="centered" id="homeIcon"/>
+        </div>  
+     </div>    
+
+
+     <!-- ---------------- IMAGE PAGE --------------- -->   
+
+     <div data-role="page" id="imagepage" data-theme="c">
+        <div data-role="header">
+            <a href="#homepage" onTouchStart="restart()">New</a>
+            <h1>DEMO</h1>
+            <!-- TODO hook up Save to Gallery or Share -->
+            <!--<a href="" onTouchStart="saveToGallery()">Save</a>-->
+        </div>  
+
+        <div data-role="content"> 
+            <img id="smallImage" src="" />
+            <img id="largeImage" src="" /> 
+        </div>  
+
+        <div data-role="footer" class="nav-glyphs" data-position="fixed" data-theme="c">  
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#" onTouchStart="onAddTopImage('images/m1.png')" id="nav1" data-icon="custom"></a></li>
+                    <li><a href="#" onTouchStart="onAddTopImage('images/m2.png')" id="nav2" data-icon="custom"></a></li>
+                    <li><a href="#" onTouchStart="onAddTopImage('images/m3.png')" id="nav3" data-icon="custom"></a></li>
+                    <li><a href="#" onTouchStart="onAddTopImage('images/m4.png')" id="nav4" data-icon="custom"></a></li>
+                    <li><a href="#" onTouchStart="onAddTopImage('images/m5.png')" id="nav5" data-icon="custom"></a></li>
+                </ul>
+            </div>
+          </div>        
+       </div>  
+
+     <!-- ---------------- INFO PAGE --------------- -->   
+
+       <div data-role="page" id="infopage" data-theme="c">
+            <div data-role="header">
+                <a href="#homepage" onTouchStart="restart()">New</a>
+                <h1>DEMO</h1>
+            </div>  
+
+            <div data-role="content"> 
+                <h3>1 - Take a photo or choose a portrait from your photo gallery.</h3>
+                <h3>2 - Select a moustache.</h3>
+                <h3>3 - Move, resize, and rotate the moustache by touch to fit.</h3>
+
+            </div>  
+        </div>  
+  </body>
+</html>            
