@@ -1,0 +1,8 @@
+This is a demo of a PhoneGap app for Women Who Code, San Francisco.
+This demo layers 2 images:
+The bottom layer is from the camera or the photo gallery.
+The top layer can be moved, scaled and rotated using touch gestures. 
+iOS, JQueryMobile & PhoneGap 1.9.
+
+Graphics, wireframes and other collaboration from Women Who Code, San Francisco.
+TouchGesture.js by Alex Gibson, http://miniapps.co.uk/
